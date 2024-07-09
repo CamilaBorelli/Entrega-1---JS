@@ -1,33 +1,54 @@
+class Persona {
+    constructor(edad, aportes, nombre) {
+        this.edad = edad;
+        this.aportes = aportes;
+        this.nombre = nombre;
+    }
 
-let edad = parseFloat(prompt("Ingrese su edad"));
-let aportes = parseFloat(prompt("Ingrese sus años de aporte"));
+    ValidarJubilacion() {
+        if (this.edad < 65, this.aportes < 30) {
+            return false
+        }
+        return true;
+    }
 
-let esMayorDeEdad = ValidarEdad(edad)
+    ValidarEdad() {
+        if (this.edad < 65) {
+            return false
+        } else {
+            return true
+        }
+    }
 
-if (esMayorDeEdad == false) {
-    alert("Aun no podés jubilarte")
 }
 
-let jubilacion = ValidarJubilacion(edad, aportes);
+const personas = [];
 
-if (jubilacion == true) {
-    alert("Ya podés jubilarte")
+const maximo = prompt("Ingrese cantidad máxima de personas:   ");
+do {
+    let nombre = prompt("Ingrese su Nombre:");
+    let edad = parseFloat(prompt("Ingrese su edad"));
+    let aportes = parseFloat(prompt("Ingrese sus años de aporte"));
+
+    personas.push(new Persona(edad, aportes, nombre))
+
+} while (personas.length < maximo);
+
+let ingresarNombre = prompt("Busqueda por nombre:   ");
+
+let personaEncontrada = personas.find(persona => persona.nombre == ingresarNombre);
+
+
+if (personaEncontrada.ValidarEdad() == false) {
+    alert("Aun no podés jubilarte")
 } else {
-    alert("Aun no podés jubilarte")
-}
-
-function ValidarEdad(edad) {
-    if (edad < 65) {
-        return false
+    if (personaEncontrada.ValidarJubilacion() == true) {
+        alert("Ya podés jubilarte")
     } else {
-        return true
+        alert("Aun no podés jubilarte")
     }
 }
 
-function ValidarJubilacion(edad, aportes) {
-    if (edad < 65, aportes < 30) {
-        return false
-    }
-    return true;
-}
+
+
 
